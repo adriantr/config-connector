@@ -1,0 +1,30 @@
+projectId: ${project_id}
+
+replicaCount: 1
+
+settings:
+  bucketName: ${bucket_name}
+  fileName: "thefile.txt"
+
+image:
+  repository: eu.gcr.io/${project_id}/file-reader
+  pullPolicy: Always
+  tag: "latest"
+
+serviceAccount:
+  create: true
+  name: "file-reader"
+  annotations:
+    iam.gke.io/gcp-service-account: file-reader@${project_id}.iam.gserviceaccount.com
+
+service:
+  type: LoadBalancer
+  port: 80
+
+ingress:
+  enabled: false
+
+resources: {}
+
+autoscaling:
+  enabled: false

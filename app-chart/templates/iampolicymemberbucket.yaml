@@ -1,0 +1,13 @@
+apiVersion: iam.cnrm.cloud.google.com/v1beta1
+kind: IAMPolicyMember
+metadata:
+  name: {{ include "app-chart.fullname" . }}-bucket
+  labels:
+      {{- include "app-chart.labels" . | nindent 4 }}
+spec:
+  member: "serviceAccount:{{ include "app-chart.serviceAccountName" . }}@{{ .Values.projectId }}.iam.gserviceaccount.com"
+  role: roles/storage.objectViewer
+  resourceRef:
+    apiVersion: storage.cnrm.cloud.google.com/v1beta1
+    kind: StorageBucket
+    external: {{ .Values.settings.bucketName }}
