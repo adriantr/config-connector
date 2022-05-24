@@ -1,6 +1,6 @@
 # Config Connector
 
-This solution is described in detail on Medium.com.
+This repo deploys a demo of config connector utilizing Terraform and Helm. It's based on cluster-scoped connector and exposes a rest API endpoint that fetches the content of a Cloud Storage-saved object.
 
 ## Installation
 
